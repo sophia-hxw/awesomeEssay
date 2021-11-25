@@ -60,17 +60,17 @@ Focal Loss是为了解决一阶段检测器中的前景、背景的不均衡(比
 $$
 CE(p,y)=\begin{cases}
 -log(p) & if \quad y = 1\\
--log(1-p) & otherwise.
+-log(1-p) & otherwise
 \end{cases}
 $$
 其中 $ y \in \{+1,-1\} $表示 ground truth的类别标签，$ p \in [0,1] $ 是模型在 $ y=1 $ 时的预测结果值，为了方便记录，定义：
 $$
 p_{t}=\begin{cases}
 p & if \quad y=1 \\
-1-p & otherwise.
+1-p & otherwise  
 \end{cases}
 $$
-那么CE损失可以重写为: $$CE(p,y) = CE(p_{t}) = -log(p_{t})$$.
+那么CE损失可以重写为: $$CE(p,y) = CE(p_{t}) = -log(p_{t})$$
 
 前面的图像中，最上面，$ \gamma=0 $ 即是CE损失的图像，从图像中看出，当 $ p_{t}>>.5 $ 时，loss是个相对较大的非零值。如果有很多个这样的易分类样本，聚小成大，对loss的影响就会导致模型在某些类别上的表现有压倒性优势。
 

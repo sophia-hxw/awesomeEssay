@@ -30,7 +30,7 @@
 ### 基于anchor的检测器
 基于anchor的方法源自传统的window-sliding和基于proposal的RCNN，在这些方法中，anchor就是预定义的sliding window或proposal，额外需要做的就是回归bbox的偏移量。所以，训练时这些anchor可能被当做训练样本，不像Fast RCNN需要给每个proposal计算特征，anchor会复用CNN出来的特征层的特征来避免重复计算，从而达到大幅增速的目的。anchor的设计方法流行起来是类似在Faster RCNN，SSD或YOLOv2中的应用，成为了现代检测器的标配。
 
-
+然而，前面分析过，anchor会带来耗费算力的超参，难设计，难调试，还影响模型的泛化性能。除了这些描述anchor形状的超参，检测器同样需要其他的超参来表示每个anchor框是正样本、负样本还是需要忽略的样本。在之前的工作中，经常使用anchor与ground truth的IOU来确定anchor框的标注，如IOU大于0.5时标记为正样本。这些超参会很大程度影响准确率，也需要启发式调参。与此同时，这些超参也是这类检测器中独有的，与诸如语义分割等其他任务框架背道而驰。
 
 ### anchor-free的检测器
 
@@ -38,12 +38,18 @@
 
 ### 全卷积一阶段目标检测器
 
-# 二，FCOS的优势
+# 二，网络结构
+![network](assets/fcos_network.png)
+
+# 三，与其他检测器性能对比
+![performance](assets/fcos_performance.png)
+
+# 四，FCOS的优势
 - 与许多基于FCN的思想是统一的，可以轻松复用这些任务的思路；
 - 检测器实现了proposal-free和anchor-free，显著减少了设计参数的数量，而这些设计参数在训练中是需要启发式调整和许多设计技巧的；
 - FCOS可以作为二阶段检测器的RPN，其性能明显优于基于anchor的RPN算法；
 - FCOS修改之后可拓展到其他的视觉任务，包括实例分割，关键点检测等等；
 
-# FPN对FCOS的改进
+# 五，FPN对FCOS的改进
 - 基于anchor的检测器由于大的stride导致低recall，需要通过降低正的anchor所需的IOU分数来进行补偿，在FCOS中，即使是大的stride，也可以获得很好的recall，甚至效果优于anchor的检测器；
 - 真是边框中的重叠可能会在训练过程中造成难以处理的歧义，这种模糊导致FCN的性能下降，在FCOS中，采用多级预测可有效解决模糊问题，FCOS有更好的效果和性能；

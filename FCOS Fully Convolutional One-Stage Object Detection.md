@@ -33,6 +33,11 @@
 然而，前面分析过，anchor会带来耗费算力的超参，难设计，难调试，还影响模型的泛化性能。除了这些描述anchor形状的超参，检测器同样需要其他的超参来表示每个anchor框是正样本、负样本还是需要忽略的样本。在之前的工作中，经常使用anchor与ground truth的IOU来确定anchor框的标注，如IOU大于0.5时标记为正样本。这些超参会很大程度影响准确率，也需要启发式调参。与此同时，这些超参也是这类检测器中独有的，与诸如语义分割等其他任务框架背道而驰。
 
 ### anchor-free的检测器
+最经典的anchor-free的方法应该是yolov1，没有使用anchor框，yolov1在目标的中心点附近预测bbox。使用中心点预测被认为是生成高质量检测结果的可行方式，但是，使用中心点预测的yolov1的recall较低，这个问题在yolov2中有详细分析。所以，yolov2中就直接使用了anchor框。对比yolov1，FCOS利用了groundtruth中所有点来预测bbox，同时用center-ness分支来过滤低质量的检测结果。因此，FCOS在recall指标上的表现较好。
+
+CornerNet是近期提出的一阶段anchor-free方法，检测bbox的两对顶点，之后在匹配到每一个bbox。CornerNet的后处理比较复杂，需要匹配属于同一个目标的两对顶点，需要模型学习额外的距离来度量顶点对的匹配。
+
+另一个anchor-free的方法就是基于DenseBox的了，但不适用于一般的目标检测，因为很难处理有重叠的对象，且recall值较低。在本文中，实验得出，多数问题可以由多层的FPN来解决，同时，结合center-ness分支，一个简单的检测器可以获得比基于anchor检测器更好的性能。
 
 ## 本文方法
 

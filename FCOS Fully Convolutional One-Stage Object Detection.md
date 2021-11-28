@@ -76,11 +76,7 @@ $F_{i}\in R^{HxWxC}$是CNN网络层$i$的特征向量，$s$是到当前层的总
 ## 5，RPN的拓展
 
 ## 6，总结
-
-
-
-
-
+本文提出了一个proposal和anchor都free的方法，实验结果可以得出，FCOS方法比当前流行的一阶段方法，诸如RetinaNet，YOLO，SSD等更受欢迎，但是模型在设计上更简单。FCOS避开了所有与anchor相关且耗费算力的超参，采用类似分割的逐像素方法来做目标检测。同时，FCOS获得了一阶段方法的sota，同样也可以作为二阶段的RPN模块，实验中采用Faster RCNN验证了这个课题，且用FCOS后的性能远超原始方法。得益于FCOS的准确率和性能，期待未来它会成为更强壮且简单的主流检测器之一，同样本文也坚信FCOS能解决实例级别的识别任务。
 
 # 二，网络结构
 ![network](assets/fcos_network.png)

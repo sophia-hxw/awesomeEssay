@@ -71,6 +71,7 @@ $F_{i}\in R^{HxWxC}$是CNN网络层$i$的特征向量，$s$是到当前层的总
 
 #### FCOS VS anchor-based检测器
 
+
 ### 4.2 与其他检测器比较
 本文在MS-COCO benchmark的test-dev上比较FCOS和其他一阶段方法，实验中，训练时随机按比例将输入图片调整到640~800，且训练次数double到180k，学习率按比例对应更新迭代时间点。其他的超参不变，实验结果得出，ResNet-101-FPN在使用时，FCOS比RetinaNet高2.4个AP。如果没有遗漏的话，这应该是在没有其他修饰的条件下，一阶段的检测器比二阶段的检测器准确率高出的最大值。FCOS同样也比其他的经典二阶段方法表现要出彩，在使用ResNeXt-64x4d-101-FPN作为backbone时，FCOS可以达到43.2的AP。FCOS也比sota的anchor-free的方法，如CornerNet，更简单且表现更好。主意CornerNet需要后处理来匹配样本点对，所以需要对检测器做额外的设计。综上所示，FCOS更能成为一个更强且更简单的主流检测器，另外，作为单一的模型，FCOS在单尺度的测试中，可以达到44.7的AP，远超之前的检测器。
 

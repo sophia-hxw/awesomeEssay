@@ -64,10 +64,13 @@ $F_{i}\in R^{HxWxC}$是CNN网络层$i$的特征向量，$s$是到当前层的总
 #### 推理细节
 
 ### 4.1 消融研究
-
 #### 类FPN的多层预测
+上文中提到，基于FCN结构的方法主要有两个问题，其一是低recall，另一个就是目标与groundtruth重叠导致的歧义问题。这个部分展示这两个问题是如何被多层的预测解决的。
+
+第一个是best possible recall问题，recall的定义是正确检测的目标与groundtruth的比值，某个box被召回是指训练时至少被关联到一个样本，这里的样本指FCOS的位置或者基于anchor方法的anchor。实验表明，没有FPN时，当tride为16且使用$P_{4}$特征层时，FCOS可以获得95.55的BPR，比Detectron中公布的官方RetinaNet的90.92的BPR要高，而且此时RetinaNet中的IoU阈值是0.4。如果有FPN，FCOS的BPR可以达到98.40，基本等同于基于anchor的方法使用所有的低质量匹配。当前检测器的召回基于低于90，所以FCOS的BPR和anchor方法的BPR低于一个点的差距不会实质影响检测器的效果。实验结果表示，FCOS在训练和检测时可能获得更好的AR，因此，关于低BPR的忧虑是徒劳的。
 
 #### center-ness该不该有
+
 
 #### FCOS VS anchor-based检测器
 

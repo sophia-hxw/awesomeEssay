@@ -237,6 +237,8 @@ focal loss的实验结果可参见表格，同时focal loss引入了一个新的
 - 3，整个结构不同层的head部分共享参数，但回归和分类的参数不共享；   
 - 4，分类分支的最后一级卷积的bias初始化使用之前提到的 $ -log((1-\pi)/\pi) $ .
 
+RetinaNet=ResNet+FPN+Two sub-network+Focal Loss
+
 ---
 
 ## 五，sota结果比对
@@ -244,7 +246,7 @@ focal loss的实验结果可参见表格，同时focal loss引入了一个新的
 
 ---
 
-# 六，学习心得
+# 学习心得
 - 解决了什么问题
     一阶段中的样本不均衡
 
@@ -253,6 +255,10 @@ focal loss的实验结果可参见表格，同时focal loss引入了一个新的
 
 - 如何证明已解决问题
     新设计的简单一阶段网络RetinaNet来验证
+
+# 与SSD对比
+SSD的基础网络是VGG，且SSD在使用多层feature map时只是简单的在不同层的feature map上放default box，并没有真正将低维度特征和高维度特征进行融合。且SSD网络中使用的控制正负样本数量比的方法是难样本挖掘方法，loss是分类+回归的loss。而RetinaNet网络的基础网络是resnet+FPN，是真正将低维度的特征和高维度的特征进行了特征融合后再来做检测的。且控制正负样本的方法是使用Focal Loss。
+
 
 
 

@@ -85,6 +85,26 @@ $$W \approx U\sum_{t}V$$
 
 ## 4，近三年的sota方法
 
+### 4.1 检测器中更好的引擎(backbone)
+近来，深度CNN在很多视觉任务重都扮演了很核心的角色，因为检测器的性能很大程度受backbone提取的特征效果影响，这部分将会介绍几个DL中重要的backbone，详细了解可查阅参考文献。
+
+- **AlexNet**
+  8层，DL横扫CV界的排头兵，自2012年ImageNet LSVRC-2012上夺冠后声名大噪，截止到2019年，该论文的引用量已经3万多次。
+
+- **VGG**
+  自Oxford Visual Geometry Group在2014年提出，将模型的层从16增加到19，使用3x3等小卷积来替换5x5或者7x7的大卷积，在当时的ImageNet数据集上获得了sota。
+
+- **GoogleNet**
+  Google团队2014年提出的Inception类模型是个大家族，增加了CNN的宽度，且深度增加到了22层，Inception的主要贡献就是卷积分解和批量归一化。
+
+- **ResNet**
+  何凯明2015年提出了ResNet，是一个新的卷积网络框架，有152层，目的是用残差连接简化输入层之间的连接从而简化训练，获得了当年很多视觉竞赛，包括ImageNet检测，ImageNet定位，COCO检测和COCO分割。
+
+- **DenseNet**
+  
+- **SENet**
+
+
 ## 5，重要的检测方法应用
 
 ## 6，未来研究的方向

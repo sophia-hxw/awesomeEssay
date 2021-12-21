@@ -106,8 +106,8 @@ $$W \approx U\sum_{t}V$$
 - **SENet**
   2018年提出，主要贡献是全局池化和学习基于通道的特征，SENet获得了ILSVRC2017分类赛的冠军。
 
-- **检测器中的其他新backbone**
-  
+- **检测器中的backbone**
+  近三年，还有些其他的backbone用于检测任务，比如STDN, DSOD, TinyDSOD, Pelee等选择DenseNet作为backbone。Mask RCNN作为最好的实例分割模型，使用ResNet和ResNeXt作为backbone。除此之外，为了检测器的加速，深度分离卷积算子相关的Xception，也是Inception的加强版，常被用于MobileNet, LightHeadRCNN等的backbone。
 
 
 ## 5，重要的检测方法应用
